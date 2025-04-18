@@ -1,16 +1,15 @@
 public class Book {
     private int id;
-    private String isbn;
+     String isbn;
     private String title;
     private Boolean isCheckedOut;
     private String checkedOutTo;
-    Book[] inventory = new Book[20];
-    public Book(int id, String isbn, String title,Boolean isCheckedOut,String checkedOutTo){
+    public Book(int id, String isbn, String title){
         this.id = id;
         this.isbn = isbn;
         this.title = title;
-        this.isCheckedOut = isCheckedOut;
-        this.checkedOutTo = checkedOutTo;
+        this.isCheckedOut = false;
+        this.checkedOutTo = "";
 
     }
 
@@ -27,6 +26,8 @@ public class Book {
     public String getCheckedOutTo(){
         return checkedOutTo;
     }
+
+
     //setter methods
     public void setId(int id){
         this.id = id;
@@ -43,12 +44,12 @@ public class Book {
     //unique book methods
     public void checkOut(String name){
         checkedOutTo = name;
-        isCheckedOut = true;
+        this.isCheckedOut = true;
 
     }
     public void checkIn(String name){
-        checkedOutTo = "";
-        isCheckedOut = false;
+        checkedOutTo = ""; // clear
+        this.isCheckedOut = false;
     }
 
 }
