@@ -32,15 +32,29 @@ public class Main {
         books[1].checkOut("Kevin");
         // available();
         // isCheckedOut();
-        System.out.println("\nMAIN MENU");
-        int command = scanner.nextInt();
-        if(command == 1){
-            //show available plue menu
-        }else if(command == 2){
-            //show checked out plus menu
-        }else{
-            //no such command
-        }
-
+        int command =  -1;
+        while(command != 0) {
+            System.out.println("\nMAIN MENU");
+            System.out.print("""
+                    1 - Show Available Books
+                    2 - Show Checked Out Books
+                    0 - Exit - closes out of the application
+                    """);
+             command = scanner.nextInt();
+             if(command == 0){
+                 break;
+             }
+            else if (command == 1) {
+                //show available plue menu
+                 available();
+            } else if (command == 2) {
+                //show checked out plus menu
+                 isCheckedOut();
+            } else {
+                //no such command
+                System.out.println("No such command");
+            }
+        } //end outer while loop
+        System.out.println("Thanks for using the Library");
     }
 }
