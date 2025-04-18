@@ -4,13 +4,41 @@ import java.util.Scanner;
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     static Book[] books = new Book[20];
+    public static Scanner scanner = new Scanner(System.in);
     static void available(){
         System.out.println("AVAILABLE");
+        Scanner in = new Scanner(System.in);
         for(Book b : books){
             if(b == null || b.getIsCheckedOut()) {
                 continue;
             }
             System.out.printf("%d - %s, %s\n",b.getId(),b.getTitle(), b.isbn);
+        }
+        String command = "start";
+        while(command != "X"){
+            System.out.println("""
+                               enter ID of book to checkout or, 
+                               blank line to exit this screen
+                               """);
+            System.out.println("command length: " + command.length());
+            //command = scanner.nextLine().trim();
+            command = in.next();
+            System.out.println("command: length:" + command.length());
+            if(command.equals("X")){
+                break;
+            }
+            else if(command != "X"){
+                //TODO catch error
+                int id = Integer.parseInt(command);
+                for(Book b: books){
+                    if(b.id == id){
+                        //TODO remeber the name from the welcome
+                        b.checkOut("USER");
+                        System.out.println("checked out");
+                        break;
+                    }
+                }
+            }
         }
 
     }
@@ -23,13 +51,12 @@ public class Main {
             System.out.printf("%d - %s, %s\n",b.getId(),b.getTitle(), b.isbn);
         }
     }
-    public static Scanner scanner = new Scanner(System.in);
+
     public static void main(String[] args) {
         books[0] = new Book(1,"978-0345317988","The Foundation");
         books[1] = new Book(2,"978-0735211292","Atomic Habits");
         books[2] = new Book(3,"978-0571202287","Animators Survivers Kit");
         books[3] = new Book(4,"978-0679728757","Blood Meridian");
-        books[1].checkOut("Kevin");
         // available();
         // isCheckedOut();
         int command =  -1;
@@ -55,6 +82,6 @@ public class Main {
                 System.out.println("No such command");
             }
         } //end outer while loop
-        System.out.println("Thanks for using the Library");
+        System.out.println("Thanks for using the library");
     }
 }
