@@ -4,6 +4,7 @@ public class Book {
     private String title;
     private Boolean isCheckedOut;
     private String checkedOutTo;
+    Book[] inventory = new Book[20];
     public Book(int id, String isbn, String title,Boolean isCheckedOut,String checkedOutTo){
         this.id = id;
         this.isbn = isbn;
